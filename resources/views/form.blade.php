@@ -11,13 +11,12 @@
     <form action="/create" method="POST">
         @csrf
 
-        @for ($i = 1 ; $i <= $count; $i++)
-
-            <input type="text" name="name{{$i}}" placeholder="name{{$i}}"> <br>
-            <input type="number" name="quantity{{$i}}" placeholder="quantity{{$i}}"> <br>
-            <input type="number" name="price{{$i}}" placeholder="price{{$i}}"> <br> <br>
-
-        @endfor
+        <input type="text" name="title" placeholder="Title"> <br>
+        <input type="text" name="body" placeholder="Body"> <br>
+        <select name="status" id="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
 
         <input type="submit" value="OK" name="s1">
     </form>

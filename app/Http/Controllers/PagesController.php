@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -31,19 +32,15 @@ class PagesController extends Controller
     }
 
     public function create(Request $request){
-      $name1 = $request->name1 ;
-      $quantity1 = $request->quantity1 ;
-      $price1 = $request->price1 ;
-      $total1 = $quantity1 * $price1 ;
+    
+        $data = DB::table('posts')->insert([
+            'title' => $request->title,
+            'body' => $request->body,
+            'status' => $request->status,
+        ]);
 
-      $name2 = $request->name2 ;
-      $quantity2 = $request->quantity2 ;
-      $price2 = $request->price2 ;
-      $total2 = $quantity2 * $price2 ;
-
-      $total = $total1 + $total2 ;
-
-      return "$name1 : $price1 x $quantity1 = ". $total1."<br>"."$name2 : $price2 x $quantity2 = ". $total2."<br>". "<h3> Total = $total</h3>";
+        if ($data)
+            return "Success" ;
 
     }
 }
