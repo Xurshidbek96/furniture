@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TestController ;
 use Illuminate\Support\Facades\Route ;
@@ -24,6 +25,15 @@ Route::prefix('pages')->name('pages.')->group(function(){
     Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
     Route::get('/design', [PagesController::class, 'design'])->name('design');
     Route::get('/shop', [PagesController::class, 'shop'])->name('shop');
+});
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('dashboard', function(){
+        return view('admin.layouts.dashboard');
+    });
+
+    Route::resource('products', ProductController::class) ;
+    Route::resource('messages', ProductController::class)->only('index', 'show', 'destroy') ;
 });
 
 
