@@ -27,6 +27,23 @@
                     <form class="create__inputs" action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
+                        <strong> Category :</strong>
+                        <select name="category_id" id="" class="form-control">
+                            <option value="{{ $product->category_id }}">{{$product->category->name  }}</option>
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        <strong>Tags:</strong>
+                        <select name="tag_ids[]" id="" class="form-control" multiple>
+                            @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}" {{ $product->tags->contains('id', $tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
                         <strong> Name :</strong>
                         <input type="text" name="name" value="{{ $product->name }}" class="form-control"> <br>
 
@@ -34,7 +51,8 @@
                         <input type="number" name="price" value="{{ $product->price }}" class="form-control"> <br>
 
                         <strong> Rasm(png yoki jpg) :</strong>
-                        <input type="file" name="img" class="form-control"> <br>
+                        <input type="file" name="photo" class="form-control"> <br>
+                        <img src="/files/photos/{{ $product->photo }}" alt="" width="100px">
 
                         <input type="submit" value="Submit">
 

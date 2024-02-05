@@ -45,8 +45,22 @@ active
                                 <td>
                                     <p>Rasm : </p>
                                 </td>
-                                <td><img src="/admin/images/" alt="" width="100px"></td>
+                                <td><img src="/files/photos/{{ $product->photo }}" alt="" width="100px"></td>
                             </tr>
+
+                            <tr>
+                                <td>Tags : </td>
+
+
+                                <td>
+                                    @foreach ($product->tags as $item)
+                                    <a href="{{ route('admin.tags.show', $item->id) }}"><b>{{ $item->name }}</b></a>
+                                    <br>
+                                    @endforeach
+                                </td>
+
+
+                        </tr>
 
 
                         </tbody>

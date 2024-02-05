@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TestController ;
 use Illuminate\Support\Facades\Route ;
@@ -32,8 +35,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
         return view('admin.layouts.dashboard');
     });
 
-    Route::resource('products', ProductController::class) ;
-    Route::resource('messages', ProductController::class)->only('index', 'show', 'destroy') ;
+    Route::resources([
+        'categories' => CategoryController::class,
+        'products' => ProductController::class,
+        'tags' => TagController::class,
+        'messages' => MessageController::class,
+    ]) ;
 });
 
 

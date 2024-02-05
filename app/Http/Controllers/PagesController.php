@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
     public function index(){
-        return view('pages.index');
+        $products = Product::latest()->take(3)->paginate(3) ;
+        return view('pages.index', compact('products'));
     }
 
     public function about(){
@@ -20,7 +22,8 @@ class PagesController extends Controller
     }
 
     public function design(){
-        return view('pages.design');
+        $products = Product::latest()->paginate(3) ;
+        return view('pages.design', compact('products'));
     }
 
     public function shop(){
@@ -32,7 +35,7 @@ class PagesController extends Controller
     }
 
     public function create(Request $request){
-    
+
         $data = DB::table('posts')->insert([
             'title' => $request->title,
             'body' => $request->body,

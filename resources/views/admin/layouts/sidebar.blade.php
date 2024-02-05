@@ -11,9 +11,21 @@
             </a>
         </li>
         <li class="">
+            <a href="{{ route('admin.categories.index') }}">
+                <i class='bx bxs-shopping-bag-alt' ></i>
+                <span class="text">Categories</span>
+            </a>
+        </li>
+        <li class="">
             <a href="{{ route('admin.products.index') }}">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Products</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{{ route('admin.tags.index') }}">
+                <i class='bx bxs-shopping-bag-alt' ></i>
+                <span class="text">Tag</span>
             </a>
         </li>
         <li class="">
