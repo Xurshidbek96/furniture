@@ -1,7 +1,7 @@
 <section id="sidebar">
     <a href="#" class="brand">
         <i class='bx bxs-smile'></i>
-        <span class="text">AdminHub</span>
+        <span class="text">Hello {{ auth()->user()->name }}</span>
     </a>
     <ul class="side-menu top">
         <li class="@yield('dashboard')">
@@ -46,7 +46,7 @@
     </ul>
     <ul class="side-menu">
         <li>
-            <a href="#">
+            <a href="{{ route('dashboard') }}">
                 <i class='bx bxs-cog' ></i>
                 <span class="text">Settings</span>
             </a>
@@ -54,7 +54,12 @@
         <li>
             <a href="#" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>
-                <span class="text">Logout</span>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <input type="submit" value="Logout" style="border: none">
+                </form>
+
+                {{-- <span class="text">Logout</span> --}}
             </a>
         </li>
     </ul>
