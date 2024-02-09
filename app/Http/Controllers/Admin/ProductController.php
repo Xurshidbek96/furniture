@@ -14,7 +14,7 @@ use Laravel\Prompts\Prompt;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::latest()->paginate(3) ;
+        $products = Product::latest()->paginate(100) ;
         // return $products ;
         return view('admin.products.index', compact('products'));
     }
