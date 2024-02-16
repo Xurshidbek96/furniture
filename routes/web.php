@@ -21,7 +21,7 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
 Route::get('/form/{count}', [PagesController::class, 'form']) ;
 Route::post('/create', [PagesController::class, 'create']) ;
