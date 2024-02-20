@@ -27,6 +27,13 @@ class ProductController extends Controller
 
     public function store(Request $request){
 
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'photo' => 'required',
+            'description' => 'required',
+        ]);
         $requestData = $request->except('tag_ids') ;
         $tagIds = $request->tag_ids ;
         // return $tagIds ;

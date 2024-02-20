@@ -20,11 +20,14 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/' , [PagesController::class, 'index']);
 Route::get('/form/{count}', [PagesController::class, 'form']) ;
 Route::post('/create', [PagesController::class, 'create']) ;
+
+Route::get('lang/{lang}', function($lang){
+    session(['lang' => $lang]) ;
+    return back() ;
+})->name('lang');
 
 Route::prefix('pages')->name('pages.')->group(function(){
     Route::get('/about', [PagesController::class, 'about'])->name('about');
