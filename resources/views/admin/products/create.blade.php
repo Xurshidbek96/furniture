@@ -42,9 +42,12 @@
                             @endforeach
                         </select>
                         <br>
-                        <strong> Name :</strong>
-                        <input type="text" name="name" class="form-control" value="{{ old('name') }}">
-                        @error('name'){{ $message }} @enderror <br>
+                        <strong> Name Uz :</strong>
+                        <input type="text" name="name_uz" class="form-control" value="{{ old('name_uz') }}">
+                        @error('name_uz'){{ $message }} @enderror <br>
+                        <strong> Name En :</strong>
+                        <input type="text" name="name_en" class="form-control" value="{{ old('name_en') }}">
+                        @error('name_en'){{ $message }} @enderror <br>
 
                         <strong> Price :</strong>
                         <input type="number" name="price" class="form-control" value="{{ old('price') }}"> <br>

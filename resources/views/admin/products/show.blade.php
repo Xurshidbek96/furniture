@@ -27,9 +27,16 @@ active
 
                             <tr>
                                 <td>
-                                    <p>Name : </p>
+                                    <p>Name uz : </p>
                                 </td>
-                                <td><b>{{ $product->name }}</b></td>
+                                <td><b>{{ $product->name_uz }}</b></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Name en : </p>
+                                </td>
+                                <td><b>{{ $product->name_en }}</b></td>
                             </tr>
 
                             <tr>

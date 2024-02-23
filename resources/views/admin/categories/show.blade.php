@@ -27,9 +27,16 @@ active
 
                             <tr>
                                 <td>
-                                    <p> Categpry Name : </p>
+                                    <p> Categpry Name uz : </p>
                                 </td>
-                                <td><b>{{ $category->name }}</b></td>
+                                <td><b>{{ $category->name_uz }}</b></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p> Categpry Name En : </p>
+                                </td>
+                                <td><b>{{ $category->name_wn }}</b></td>
                             </tr>
 
                             <tr>
@@ -38,7 +45,7 @@ active
 
                                 <td>
                                     @foreach ($category->products as $item)
-                                    <a href="{{ route('admin.products.show', $item->id) }}"><b>{{ $item->name }}</b></a>
+                                    <a href="{{ route('admin.products.show', $item->id) }}"><b>{{ $item->name_uz }}</b></a>
                                     <br>
                                     @endforeach
                                 </td>

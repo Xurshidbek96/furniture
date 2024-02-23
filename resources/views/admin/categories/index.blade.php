@@ -28,7 +28,7 @@
                         @foreach ($categories as $item)
                             <tr>
                                 <td>{{ ++$loop->index }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->name_uz }}</td>
                                 <td>
                                     <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST">
 

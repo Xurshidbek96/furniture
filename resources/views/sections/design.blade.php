@@ -11,7 +11,7 @@
                             @foreach ($products as $item)
                             <div class="col-md-4">
                                 <div class="box_main">
-                                    <p class="chair_text">{{ $item->name }}</p>
+                                    <p class="chair_text">{{ $item['name_'.\App::getLocale()] }}</p>
                                     <div class="image_3" href="#"><img src="/files/photos/{{ $item->photo }}"></div>
                                     <p class="chair_text">Price {{ $item->price }}</p>
                                     <div class="buy_bt"><a href="#">Buy Now</a></div>

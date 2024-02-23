@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>№</th>
-                            <th>Name</th>
+                            <th>Name uz</th>
                             <th>Category</th>
                             <th>Photo</th>
                             <th>Price</th>
@@ -32,7 +32,7 @@
                         @foreach ($products as $item)
                             <tr>
                                 <td>{{ ++$loop->index }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->name_uz }}</td>
                                 <td>{{ $item->category->name ?? 'Bog`lanmagan' }}</td>
                                 <td><img src="/files/photos/{{ $item->photo }}" alt="" width="100px"></td>
                                 <td>{{ $item->price }}</td>
