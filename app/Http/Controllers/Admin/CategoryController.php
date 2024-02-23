@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\AuditEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -32,11 +33,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name_uz' => 'required|string|max:255',
+            'name_en' => 'required|string|max:255',
         ]) ;
         $requestData = $request->all() ;
-        Category::create($requestData) ;
-        return redirect()->route('admin.categories.index') ;
+        $data = Category::create($requestData) ;
+
+        $user= auth()->user();
+        event(new AuditEvent($data, $user, 'Add', $request->ip())) ;
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
     /**
@@ -62,7 +67,7 @@ class CategoryController extends Controller
     {
         $requestData = $request->all() ;
         $category->update($requestData) ;
-        return redirect()->route('admin.categories.index') ;
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully') ;
     }
 
     /**
@@ -70,7 +75,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $user= auth()->user();
+        event(new AuditEvent($category, $user, 'Delete', request()->ip())) ;
         $category->delete();
-        return redirect()->route('admin.categories.index') ;
+        return redirect()->route('admin.categories.index')->with('danger', 'Category deleted successfully'); ;
     }
 }
