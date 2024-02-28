@@ -41,12 +41,22 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function(){
         return view('admin.layouts.dashboard');
     })->name('dashboard');
 
-    Route::resources([
-        'categories' => CategoryController::class,
-        'products' => ProductController::class,
-        'tags' => TagController::class,
-        'messages' => MessageController::class,
-    ]) ;
+    Route::middleware('role:admin|SuperAdmin')->group(function(){
+        Route::resources([
+            'tags' => TagController::class,
+        ]) ;
+    });
+    Route::middleware('role:writer|SuperAdmin')->group(function(){
+        Route::resources([
+            'products' => ProductController::class,
+        ]) ;
+    });
+    Route::middleware('role:SuperAdmin')->group(function(){
+        Route::resources([
+            'categories' => CategoryController::class,
+            'messages' => MessageController::class,
+        ]) ;
+    });
 });
 
 

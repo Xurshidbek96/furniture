@@ -1,7 +1,7 @@
 <section id="sidebar">
     <a href="#" class="brand">
         <i class='bx bxs-smile'></i>
-        <span class="text">Hello {{ auth()->user()->name }}</span>
+        <span class="text"> . Role : {{ Auth::user()->roles[0]['name'] }}</span>
     </a>
     <ul class="side-menu top">
         <li class="@yield('dashboard')">
@@ -10,38 +10,49 @@
                 <span class="text">Dashboard</span>
             </a>
         </li>
+        @role('SuperAdmin')
         <li class="">
             <a href="{{ route('admin.categories.index') }}">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Categories</span>
             </a>
         </li>
+        @endrole
+
+        @role('writer|SuperAdmin')
         <li class="">
             <a href="{{ route('admin.products.index') }}">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Products</span>
             </a>
         </li>
+        @endrole
+
+        @role('admin|SuperAdmin')
         <li class="">
             <a href="{{ route('admin.tags.index') }}">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Tag</span>
             </a>
         </li>
+        @endrole
+
+        @role('SuperAdmin')
         <li class="">
             <a href="">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Staff</span>
             </a>
         </li>
+        @endrole
 
 
-        <li>
+        {{-- <li>
             <a href="#">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Sinflar</span>
             </a>
-        </li>
+        </li> --}}
 
     </ul>
     <ul class="side-menu">
