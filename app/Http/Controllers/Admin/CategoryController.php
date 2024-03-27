@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\AuditEvent;
 use App\Http\Controllers\Controller;
+use App\Jobs\CategoryCreateJob;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all() ;
-        // return $products ;
+        $categories = Category::latest()->get() ;
+        // return $categories ;
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -37,10 +38,10 @@ class CategoryController extends Controller
             'name_en' => 'required|string|max:255',
         ]) ;
         $requestData = $request->all() ;
-        $data = Category::create($requestData) ;
 
-        $user= auth()->user();
-        event(new AuditEvent($data, $user, 'Add', $request->ip())) ;
+        $user = auth()->user();
+        CategoryCreateJob::dispatch($requestData, $user) ;
+
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 

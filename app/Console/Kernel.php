@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Jobs\TestJob;
+use App\Models\Category;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,7 +15,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // $schedule->command('inspire')->everySecond();
+
+        $schedule->call(function () {
+           Category::create([
+               'name_uz' => 'Test category',
+               'name_en' => 'Test category',
+           ]) ;
+        })->everyMinute();
+
+        // $schedule->job(new TestJob)->everyMinute();
     }
 
     /**

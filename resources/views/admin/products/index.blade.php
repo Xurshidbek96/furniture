@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ ++$loop->index }}</td>
                                 <td>{{ $item->name_uz }}</td>
-                                <td>{{ $item->category->name ?? 'Bog`lanmagan' }}</td>
+                                <td>{{ $item->category->name_en ?? 'Bog`lanmagan' }}</td>
                                 <td><img src="/files/photos/{{ $item->photo }}" alt="" width="100px"></td>
                                 <td>{{ $item->price }}</td>
                                 <td>

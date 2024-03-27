@@ -30,9 +30,9 @@
 
                         <strong> Category :</strong>
                         <select name="category_id" id="" class="form-control">
-                            <option value="{{ $product->category_id }}">{{$product->category->name  }}</option>
+                            <option value="{{ $product->category_id }}">{{$product->category->name_uz ?? ''  }} </option>
                             @foreach ($categories as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->id }}">{{ $item->name_uz }}</option>
                             @endforeach
                         </select>
                         <br>
